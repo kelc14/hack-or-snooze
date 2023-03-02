@@ -19,12 +19,18 @@ async function login(evt) {
 
   // User.login retrieves user info from API and returns User instance
   // which we'll make the globally-available, logged-in user.
-  currentUser = await User.login(username, password);
+  try {
+    currentUser = await User.login(username, password);
 
-  $loginForm.trigger("reset");
+    $loginForm.trigger("reset");
 
-  saveUserCredentialsInLocalStorage();
-  updateUIOnUserLogin();
+    saveUserCredentialsInLocalStorage();
+    updateUIOnUserLogin();
+  } catch {
+    alert(
+      "Invalid Login Information. Please enter valid username and password."
+    );
+  }
 }
 
 $loginForm.on("submit", login);
@@ -41,12 +47,16 @@ async function signup(evt) {
 
   // User.signup retrieves user info from API and returns User instance
   // which we'll make the globally-available, logged-in user.
-  currentUser = await User.signup(username, password, name);
+  try {
+    currentUser = await User.signup(username, password, name);
 
-  saveUserCredentialsInLocalStorage();
-  updateUIOnUserLogin();
+    saveUserCredentialsInLocalStorage();
+    updateUIOnUserLogin();
 
-  $signupForm.trigger("reset");
+    $signupForm.trigger("reset");
+  } catch {
+    alert("Username Taken. Please choose another.");
+  }
 }
 
 $signupForm.on("submit", signup);
@@ -109,6 +119,7 @@ function saveUserCredentialsInLocalStorage() {
 
 function updateUIOnUserLogin() {
   console.debug("updateUIOnUserLogin");
+  hidePageComponents();
 
   $allStoriesList.show();
 

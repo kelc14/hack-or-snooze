@@ -29,7 +29,6 @@ a:hover {
   text-decoration: underline;
 }
 
-
 /* Site layout */
 
 /* This is the basic box that the main part of the page goes into */
@@ -43,7 +42,6 @@ a:hover {
 .hidden {
   display: none;
 }
-
 
 /* Forms */
 
@@ -80,6 +78,20 @@ form input:focus {
   box-shadow: 0 0 4px 1px darkgray;
 }
 
+form textarea {
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 2px;
+  padding: 8px;
+  width: 300px;
+  box-shadow: 0 0 3px 1px lightgray;
+}
+
+form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 4px 1px darkgray;
+}
+
 form > button {
   width: 4rem;
   margin: 5px 0 15px 65px;
@@ -105,7 +117,6 @@ form > hr {
 .login-input label {
   width: 70px;
 }
-
 
 /* responsive queries for tightening things up for mobile. */
 

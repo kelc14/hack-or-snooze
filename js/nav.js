@@ -34,3 +34,32 @@ function updateNavOnLogin() {
   $navLogOut.show();
   $navUserProfile.text(`${currentUser.username}`).show();
 }
+
+// these are hidden until logged in
+
+// submit new story
+
+function navNewStoryClick() {
+  hidePageComponents();
+  $newStoryForm.show();
+}
+
+$navSubmit.on("click", navNewStoryClick);
+
+// my favorites
+
+function navFavoritesClick() {
+  hidePageComponents();
+  putFavoritesOnPage();
+}
+
+$navFavorites.on("click", navFavoritesClick);
+
+// my stories
+
+function navMyStoriesClick() {
+  hidePageComponents();
+  putMyStoriesOnPage();
+}
+
+$navMyStories.on("click", navMyStoriesClick);

@@ -73,7 +73,7 @@
           <input id="story-url" required />
         </div>
         <div class="story-input">
-          <label for="author">text</label>
+          <label for="author">author</label>
           <input id="author" required />
         </div>
         <button type="submit">submit</button>
@@ -134,6 +134,35 @@
         </div>
         <button type="submit">create account</button>
       </form>
+    </section>
+
+    <section class="container" id="user-profile-container">
+      <h4>Your User Profile</h4>
+      <table class="user-profile-table">
+        <tbody>
+          <tr>
+            <td><b>Name</b></td>
+            <td id="user-profile-name"></td>
+            <td class="edit" id="edit-name">edit</td>
+            <td class="hidden" id="submit-name">
+              <button class="submit-change">submit</button> </td>
+          </tr>
+          <tr>
+            <td><b>Username</b></td>
+            <td id="user-profile-username"></td>
+            <td class="edit"></td>
+          </tr>
+          <tr>
+            <td><b>Password</b></td>
+            <td id="user-profile-password"></td>
+            <td class="edit" id="edit-password">edit</td>
+            <td class="hidden" id="submit-password">
+              <button class="submit-change">submit</button> 
+            </td>
+          </td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <!-- Library JS & our JS -->

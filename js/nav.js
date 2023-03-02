@@ -35,6 +35,16 @@ function updateNavOnLogin() {
   $navUserProfile.text(`${currentUser.username}`).show();
 }
 
+function viewUserProfile() {
+  hidePageComponents();
+  $profileContainer.show();
+  $("#user-profile-name").text(currentUser.name);
+  $("#user-profile-username").text(currentUser.username);
+  $("#user-profile-password").text("**********");
+}
+
+$navUserProfile.on("click", viewUserProfile);
+
 // these are hidden until logged in
 
 // submit new story

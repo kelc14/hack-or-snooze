@@ -98,6 +98,10 @@ function putFavoritesOnPage() {
 
   $allStoriesList.empty();
 
+  if (currentUser.favorites.length === 0) {
+    $allStoriesList.html("<h4>You have not favorited any stories yet!</h4>");
+  }
+
   // loop through all of our stories and generate HTML for them
   for (let favorite of currentUser.favorites) {
     const $favorite = generateStoryMarkup(favorite);
@@ -111,6 +115,10 @@ function putMyStoriesOnPage() {
   console.debug("putMyStoriesOnPage");
 
   $allStoriesList.empty();
+
+  if (currentUser.ownStories.length === 0) {
+    $allStoriesList.html("<h4>You have not created any stories yet!</h4>");
+  }
 
   // loop through all of our stories and generate HTML for them
   for (let myStory of currentUser.ownStories) {
@@ -164,15 +172,10 @@ async function favoriteOrNot(event) {
 
   // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& BUG TO COME BACK AND FIX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  // if its the users own story - check myStory of currentUser.ownStories for story
-
-  // else :
-  //  get the story object using its ID from the list of all stories on the page
-  let storiesArray = storyList.stories;
-  const result = storiesArray.filter((obj) => {
-    return obj.storyId === favoritedStoryId;
-  });
-  const story = result[0];
+  const result = await axios.get(
+    `https://hack-or-snooze-v3.herokuapp.com/stories/${favoritedStoryId}`
+  );
+  const story = result.data.story;
 
   // this continues as normal
   if (!favoritedStoryItem.dataset.favorite) {
@@ -184,6 +187,7 @@ async function favoriteOrNot(event) {
     star.setAttribute("class", "fa-regular fa-star");
     await currentUser.removeFavorite(story);
   }
+  checkForRememberedUser();
 }
 
 $allStoriesList.on("click", ".favIcon", favoriteOrNot);

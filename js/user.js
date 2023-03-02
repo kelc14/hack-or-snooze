@@ -126,3 +126,77 @@ function updateUIOnUserLogin() {
 
   updateNavOnLogin();
 }
+
+// set-up editing capabilities for user profile
+
+// **** UPDATE NAME ******* //
+async function updateUserName(user) {
+  let token = currentUser.loginToken;
+
+  const response = await axios.patch(
+    `${BASE_URL}/users/${currentUser.username}`,
+    { token, user }
+  );
+}
+
+$("#edit-name").one("click", function () {
+  updateInputForEditingName();
+});
+
+function updateInputForEditingName() {
+  $("#edit-name").text("");
+  $("#edit-name").html(
+    '<input type="text" placeholder="enter new name" id="updated-name" minlength="1" maxlength="55">'
+  );
+  $("#submit-name").removeClass("hidden");
+}
+
+$("#submit-name").on("click", async function () {
+  const nameUpdated = $("#updated-name").val();
+  let updatedName = { name: nameUpdated };
+
+  await updateUserName(updatedName);
+  $("#edit-name").text("");
+  $("#user-profile-name").text(nameUpdated);
+  $("#submit-name").addClass("hidden");
+  $("#edit-name").text("edit");
+  $("#edit-name").one("click", function () {
+    updateInputForEditingName();
+  });
+});
+
+// **** UPDATE PASSWORD ******* //
+async function updatePassword(user) {
+  let token = currentUser.loginToken;
+
+  const response = await axios.patch(
+    `${BASE_URL}/users/${currentUser.username}`,
+    { token, user }
+  );
+}
+
+$("#edit-password").one("click", function () {
+  updateInputForEditingPassword();
+});
+
+function updateInputForEditingPassword() {
+  $("#edit-password").text("");
+  $("#edit-password").html(
+    '<input type="password" id="updated-password" minlength="1" maxlength="55">'
+  );
+  $("#submit-password").removeClass("hidden");
+}
+
+$("#submit-password").on("click", async function () {
+  const passwordUpdatedVal = $("#updated-password").val();
+  let updatedPasswordObj = { password: passwordUpdatedVal };
+
+  await updateUserName(updatedPasswordObj);
+  $("#edit-password").text("");
+  $("#user-password").text("********");
+  $("#submit-password").addClass("hidden");
+  $("#edit-password").text("edit");
+  $("#edit-password").one("click", function () {
+    updateInputForEditingPassword();
+  });
+});

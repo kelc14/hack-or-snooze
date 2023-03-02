@@ -118,6 +118,10 @@ form > hr {
   width: 70px;
 }
 
+.user-profile-table {
+  width: 50%;
+}
+
 /* responsive queries for tightening things up for mobile. */
 
 @media screen and (max-width: 576px) {
